@@ -27,6 +27,10 @@ export default function HelpPage() {
     {
       question: "What if I find a bug or have a feature request?",
       answer: "Please tell us! Submit issues on GitHub, join our Discord, or email opendevsociety@gmail.com. We see every report as a chance to make the platform better for everyone."
+    },
+    {
+      question: "自动炒股（自动交易）支持吗？",
+      answer: "OpenStock 不是券商，也不提供自动交易或下单功能。我们专注于行情、资讯、提醒和学习工具，帮助你做出更明智的决策。若你需要自动交易，请选择合规券商/平台并充分了解风险。"
     }
   ];
 
