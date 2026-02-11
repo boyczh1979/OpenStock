@@ -323,6 +323,8 @@ public/assets/images/   # logos and screenshots
 
 ## 📡 Data & Integrations
 
+- Enterprise WeCom Bot (callback adapter + OpenClaw relay): see `docs/wecom-openclaw-setup.md`.
+
 - Finnhub
     - Stock search, company profiles, and market news.
     - Set `FINNHUB_API_KEY` and `FINNHUB_BASE_URL` (default: https://finnhub.io/api/v1).
