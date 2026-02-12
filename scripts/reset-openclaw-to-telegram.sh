@@ -2,8 +2,8 @@
 set -euo pipefail
 
 CANDIDATE_DIRS=(
+  "${OPENCLAW_HOME:-}"
   "$PWD/openclaw"
-  "$PWD"
   "$HOME/.openclaw"
   "/etc/openclaw"
   "/opt/openclaw"
@@ -11,10 +11,12 @@ CANDIDATE_DIRS=(
 
 CONFIG_FILES=()
 for dir in "${CANDIDATE_DIRS[@]}"; do
-  [[ -d "$dir" ]] || continue
+  [[ -n "$dir" && -d "$dir" ]] || continue
   while IFS= read -r file; do
     CONFIG_FILES+=("$file")
-  done < <(find "$dir" -maxdepth 3 -type f \( -name '*.env' -o -name '*.yaml' -o -name '*.yml' -o -name '*.toml' \) ! -name 'package.json' -print 2>/dev/null)
+  done < <(find "$dir" -maxdepth 3 \
+    \( -name node_modules -o -name .git \) -prune -o \
+    -type f \( -name '*.env' -o -name '*.yaml' -o -name '*.yml' -o -name '*.toml' \) -print 2>/dev/null)
 done
 
 if [[ ${#CONFIG_FILES[@]} -eq 0 ]]; then
@@ -22,7 +24,8 @@ if [[ ${#CONFIG_FILES[@]} -eq 0 ]]; then
   exit 0
 fi
 
-strip_patterns='(aliyun|阿里云|wecom|wechat_work|qywx|qiyeweixin|enterprise_wechat|webhook)'
+# Only strip vendor/platform specific keys to avoid deleting generic webhook settings.
+strip_patterns='(aliyun|阿里云|wecom|wechat_work|qywx|qiyeweixin|enterprise_wechat|qyapi\.weixin\.qq\.com)'
 
 updated=0
 for file in "${CONFIG_FILES[@]}"; do
