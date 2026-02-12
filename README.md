@@ -167,6 +167,28 @@ npm run build && npm start
 
 Open http://localhost:3000 to view the app.
 
+## 🤖 Codex Local Config (Optional)
+
+If you're using Codex locally for contributor workflows, copy `codex-config.local.example.json` into your Codex config location and replace the placeholder values (`YOUR_ALIBABA_CLOUD_API_KEY`, gateway token, etc.) with your own credentials before running.
+
+### OpenClaw troubleshooting
+
+If `openclaw gateway` fails with either of these errors, your local config still has deprecated WeCom keys:
+- `channels.wecom: unknown channel id: wecom`
+- `plugins.entries.wecom: plugin not found: wecom`
+
+1. Open your local config file (`~/.openclaw/openclaw.json` on macOS/Linux, `C:\Users\<you>\.openclaw\openclaw.json` on Windows).
+2. Remove both deprecated entries if present:
+   - `channels.wecom` (or reset `channels` to `{}`)
+   - `plugins.entries.wecom` (or reset `plugins.entries` to `{}`)
+3. Run:
+   ```bash
+   openclaw doctor --fix
+   openclaw gateway
+   ```
+
+If the browser still shows `127.0.0.1 refused to connect`, the gateway process is not running yet—check the terminal output for config validation errors first.
+
 ## 🐳 Docker Setup
 
 You can run OpenStock and MongoDB easily with Docker Compose.

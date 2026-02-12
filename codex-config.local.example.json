@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.1.27-beta.1",
+    "lastTouchedAt": "2026-02-11T00:00:00.000Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-02-11T00:00:00.000Z",
+    "lastRunVersion": "2026.1.27-beta.1",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "alibaba-cloud-default": {
+        "provider": "alibaba-cloud",
+        "mode": "api_key",
+        "apiKey": "YOUR_ALIBABA_CLOUD_API_KEY"
+      },
+      "ollama-default": {
+        "provider": "ollama",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "providers": {
+      "alibaba-cloud": {
+        "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "apiKey": "YOUR_ALIBABA_CLOUD_API_KEY",
+        "auth": "api-key",
+        "api": "openai-chat",
+        "models": [
+          {
+            "id": "qwen-turbo",
+            "name": "Qwen Turbo",
+            "api": "openai-chat",
+            "contextWindow": 131072,
+            "maxTokens": 4096,
+            "reasoning": false,
+            "input": [
+              "text"
+            ]
+          }
+        ]
+      },
+      "ollama": {
+        "baseUrl": "http://127.0.0.1:11434/v1",
+        "apiKey": "ollama",
+        "auth": "api-key",
+        "api": "openai-chat",
+        "models": [
+          {
+            "id": "llama3",
+            "name": "Llama 3",
+            "api": "openai-chat",
+            "contextWindow": 8192,
+            "maxTokens": 2048,
+            "reasoning": false,
+            "input": [
+              "text"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "alibaba-cloud/qwen-turbo",
+        "fallback": "ollama/llama3"
+      },
+      "models": {
+        "alibaba-cloud/qwen-turbo": {
+          "alias": "qwen-turbo",
+          "params": {
+            "temperature": 0.7,
+            "max_tokens": 4096
+          }
+        },
+        "ollama/llama3": {
+          "alias": "llama3",
+          "params": {
+            "temperature": 0.7,
+            "max_tokens": 2048
+          }
+        }
+      },
+      "workspace": "/workspace/OpenStock",
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto"
+  },
+  "channels": {},
+  "plugins": {
+    "entries": {}
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "boot-md": {
+          "enabled": true
+        },
+        "command-logger": {
+          "enabled": true
+        },
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "127.0.0.1",
+    "controlUi": {
+      "allowInsecureAuth": false
+    },
+    "auth": {
+      "mode": "token",
+      "token": "your-secure-token-here-change-this"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "http": {
+      "endpoints": {
+        "responses": {
+          "enabled": true
+        }
+      }
+    }
+  }
+}
