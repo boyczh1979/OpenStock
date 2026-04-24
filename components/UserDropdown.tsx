@@ -12,10 +12,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {useRouter} from "next/navigation";
 import {Button} from "@/components/ui/button";
 import {LogOut} from "lucide-react";
-import NavItems from "@/components/NavItems";
 import {signOut} from "@/lib/actions/auth.actions";
 
-const UserDropdown = ({ user, initialStocks }: {user: User, initialStocks: StockWithWatchlistStatus[]}) => {
+const UserDropdown = ({ user }: { user: User }) => {
     const router = useRouter();
 
     const handleSignOut = async () => {
@@ -33,8 +32,8 @@ const UserDropdown = ({ user, initialStocks }: {user: User, initialStocks: Stock
                             {user.name[0]}
                         </AvatarFallback>
                     </Avatar>
-                    <div className="hidden md:flex flex-col items-start ">
-                        <span className='text-base font-medium text-gray-400 hover:text-teal-500 '>
+                    <div className="hidden md:flex flex-col items-start">
+                        <span className='text-base font-medium text-gray-400 hover:text-teal-500'>
                             {user.name}
                         </span>
                     </div>
@@ -59,13 +58,9 @@ const UserDropdown = ({ user, initialStocks }: {user: User, initialStocks: Stock
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator className="bg-gray-600"/>
                 <DropdownMenuItem onClick={handleSignOut} className="text-gray-100 text-md font-medium focus:bg-transparent focus:text-teal-500 transition-colors cursor-pointer">
-                    <LogOut className="h-4 w-4 mr-2 hidden sm:block" />
+                    <LogOut className="h-4 w-4 mr-2" />
                     Logout
                 </DropdownMenuItem>
-                <DropdownMenuSeparator className="block sm:hidden bg-gray-600"/>
-                <nav className="sm:hidden">
-                    <NavItems initialStocks={initialStocks} />
-                </nav>
             </DropdownMenuContent>
         </DropdownMenu>
     )

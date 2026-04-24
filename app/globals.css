@@ -149,10 +149,10 @@
         @apply h-12 cursor-pointer bg-gradient-to-b from-teal-400 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-gray-800 font-medium text-base rounded-lg shadow-lg disabled:opacity-50;
     }
     .home-wrapper {
-        @apply text-gray-400 flex-col gap-4 md:gap-10 items-center sm:items-start;
+        @apply text-gray-400 flex-col gap-6 md:gap-10 items-start;
     }
     .home-section {
-        @apply w-full gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3;
+        @apply w-full gap-6 md:gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3;
     }
     .header {
         @apply z-50 w-full h-[70px] bg-gray-800;
@@ -215,7 +215,7 @@
         @apply cursor-pointer px-4 py-2 w-fit flex items-center gap-2 text-sm md:text-base bg-teal-500 hover:bg-teal-500 text-black font-medium rounded;
     }
     .search-dialog {
-        @apply !bg-gray-800 lg:min-w-[800px] border-gray-600 fixed top-10 left-1/2 -translate-x-1/2 translate-y-10;
+        @apply !bg-gray-800 lg:min-w-[800px] border-gray-600 fixed top-4 sm:top-10 left-1/2 -translate-x-1/2 sm:translate-y-10 w-[calc(100%-2rem)] sm:w-auto;
     }
     .search-field {
         @apply !bg-gray-800 border-b border-gray-600 relative;
@@ -251,7 +251,7 @@
         @apply flex flex-col sm:flex-row p-2 gap-3 sm:gap-10 font-medium;
     }
     .stock-details-container {
-        @apply w-full grid-cols-1 gap-6 xl:grid-cols-3 space-y-6 sm:space-y-8;
+        @apply w-full grid-cols-1 gap-6 xl:grid-cols-3;
     }
     .watchlist-btn {
         @apply bg-teal-500 text-base hover:bg-teal-500 text-gray-900 w-full rounded h-11 font-semibold cursor-pointer;
